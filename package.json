@@ -1,0 +1,35 @@
+{
+  "name": "video-call-io",
+  "version": "1.0.0",
+  "description": "Live Video Call",
+  "main": "dist/app.js",
+  "scripts": {
+    "start": "cross-env NODE_ENV=Production node dist/app.js",
+    "dev": "cross-env NODE_ENV=Development nodemon dist/app.js",
+    "tsc": "tsc -w",
+    "sass": "sass --no-source-map -w src/public/scss:dist/public/css"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hsn8najafi/video-call-io.git"
+  },
+  "author": "Hosein Najafi <hsn8najafi@gmail.com>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/hsn8najafi/video-call-io/issues"
+  },
+  "homepage": "https://github.com/hsn8najafi/video-call-io#readme",
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "@types/node": "^17.0.5",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.15",
+    "sass": "^1.45.1",
+    "typescript": "^4.5.4"
+  },
+  "dependencies": {
+    "dotenv": "^10.0.0",
+    "express": "^4.17.2",
+    "socket.io": "^4.4.1"
+  }
+}
