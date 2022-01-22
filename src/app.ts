@@ -31,6 +31,9 @@ io.on("connection", (socket) => {
     socket.broadcast.emit("removedUser", {
       socketId: socket.id,
     });
+    socket.broadcast.emit("remove-user", {
+      socketId: socket.id,
+    });
   });
 });
 
