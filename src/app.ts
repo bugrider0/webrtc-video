@@ -16,23 +16,25 @@ let users: string[] = [];
 
 // Socket.IO
 io.on("connection", (socket) => {
-  const socketExist = users.find((user) => user !== socket.id);
+  const socketExist = users.find((user) => user === socket.id);
+
   if (!socketExist) {
     users.push(socket.id);
     socket.emit("updateUsersList", {
       users: users.filter((currentSocket) => currentSocket !== socket.id),
     });
+    socket.broadcast.emit("updateUsersList", { users: [socket.id] });
   }
 
   socket.on("disconnect", () => {
     users = users.filter((currentSocket) => currentSocket !== socket.id);
-
     socket.broadcast.emit("removedUser", {
       socketId: socket.id,
     });
   });
 });
 
+// Listner
 const { PORT, HOST, NODE_ENV } = process.env;
 server.listen(PORT, () =>
   console.log(
