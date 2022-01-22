@@ -12,11 +12,25 @@ const io = new Server(server);
 app.use(express.static(path.join(__dirname, "public")));
 
 // Socket Users
-const users: string[] = [];
+let users: string[] = [];
 
 // Socket.IO
-io.on("connection", () => {
-  console.log(`Socket Connected`);
+io.on("connection", (socket) => {
+  const socketExist = users.find((user) => user !== socket.id);
+  if (!socketExist) {
+    users.push(socket.id);
+    socket.emit("updateUsersList", {
+      users: users.filter((currentSocket) => currentSocket !== socket.id),
+    });
+  }
+
+  socket.on("disconnect", () => {
+    users = users.filter((currentSocket) => currentSocket !== socket.id);
+
+    socket.broadcast.emit("removedUser", {
+      socketId: socket.id,
+    });
+  });
 });
 
 const { PORT, HOST, NODE_ENV } = process.env;
