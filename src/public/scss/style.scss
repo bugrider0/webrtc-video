@@ -27,6 +27,7 @@ body {
   background-color: white;
   bottom: -50vh;
   border-top-right-radius: $radius-1;
+  overflow-y: scroll;
   border-top-left-radius: $radius-1;
   div {
     cursor: pointer;
