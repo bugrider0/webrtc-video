@@ -11,7 +11,13 @@ const io = new Server(server);
 
 app.use(express.static(path.join(__dirname, "public")));
 
+// Socket Users
 const users: string[] = [];
+
+// Socket.IO
+io.on("connection", () => {
+  console.log(`Socket Connected`);
+});
 
 const { PORT, HOST, NODE_ENV } = process.env;
 server.listen(PORT, () =>
