@@ -23,7 +23,7 @@ io.on("connection", (socket) => {
     socket.emit("updateUsersList", {
       users: users.filter((currentSocket) => currentSocket !== socket.id),
     });
-    socket.broadcast.emit("updateUsersList", { users: [socket.id] });
+    // socket.broadcast.emit("updateUsersList", { users: [socket.id] });
   }
 
   socket.on("disconnect", () => {
