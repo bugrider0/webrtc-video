@@ -24,6 +24,12 @@ io.on("connection", (socket) => {
       users: users.filter((currentSocket) => currentSocket !== socket.id),
     });
     // socket.broadcast.emit("updateUsersList", { users: [socket.id] });
+    socket.on("callUser", (data) => {
+      socket.to(data.target).emit("called", {
+        offer: data.offer,
+        socket: socket.id,
+      });
+    });
   }
 
   socket.on("disconnect", () => {
